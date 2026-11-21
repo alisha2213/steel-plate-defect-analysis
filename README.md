@@ -1,27 +1,25 @@
 # Steel Plate Defect Analysis
 
-A quality-analysis project that applies Pareto analysis, root cause analysis (fishbone and 5 Why) and statistical process control to steel plate inspection data, built in Excel.
+Pareto analysis, root cause analysis (fishbone and 5 Why) and SPC control charts on steel plate inspection data, built in Excel.
 
 ## Objective
-To find out which fault types drive most defects in steel plate production, investigate the likely causes of the largest named fault, and check process stability using control charts.
+Find which fault types drive most defects, investigate the largest specific fault, and check how a key measurement behaves on X-bar/R control charts.
 
 ## Dataset
-- **Source:** Steel Plates Faults dataset, UCI Machine Learning Repository
-- **Size:** 1,941 inspection records, 27 measurement features, 7 fault categories (Pastry, Z_Scratch, K_Scratch, Stains, Dirtiness, Bumps, Other_Faults)
-- Each record is labelled with exactly one fault type.
+Steel Plates Faults, UCI Machine Learning Repository: 1,941 inspection records with 7 fault categories (Pastry, Z_Scratch, K_Scratch, Stains, Dirtiness, Bumps, Other_Faults). Each record has exactly one fault label.
 
 ## Tools
-Excel (Excel for the web): formulas (`SUM`, `VLOOKUP`), combo charts, pivot tables. Fishbone drawn in draw.io.
+Excel (formulas such as SUM, VLOOKUP, AVERAGEIFS, COUNTIFS, SUMIFS; combo and line charts) and draw.io-style fishbone.
 
 ## Method
-1. **Data check:** confirmed 1,941 records and that fault counts sum to the total.
-2. **Pareto analysis:** counted each fault type, sorted by frequency, and calculated cumulative % to find the vital few.
-3. **Root cause analysis:** built a fishbone diagram and 5 Why chain for the largest named fault (Bumps). **[ADD LATER]**
-4. **SPC:** built X-bar and R control charts on [measurement column] with subgroup size 5 to check process stability. **[ADD LATER]**
+1. Data check: 1,941 records, fault counts sum to the total.
+2. Pareto: counted and sorted faults, calculated cumulative %.
+3. Data check for Bumps: compared Bump rate by steel type and compared measurement averages.
+4. Root cause: fishbone and 5 Why for Bumps.
+5. SPC: X-bar and R charts on Steel_Plate_Thickness, 25 subgroups of 5 consecutive records.
 
 ## Key Findings
-
-| Fault type | Count | Share | Cumulative % |
+| Fault | Count | Share | Cumulative |
 |---|---|---|---|
 | Other_Faults | 673 | 34.7% | 34.7% |
 | Bumps | 402 | 20.7% | 55.4% |
@@ -31,27 +29,29 @@ Excel (Excel for the web): formulas (`SUM`, `VLOOKUP`), combo charts, pivot tabl
 | Stains | 72 | 3.7% | 97.2% |
 | Dirtiness | 55 | 2.8% | 100% |
 
-- The top 3 categories account for **75.5%** of all faults, and the top 4 for **85.3%**.
-- **Other_Faults** is a catch-all category, so it cannot be investigated as a single defect. Finer classification would be needed.
-- **Bumps** is the largest *specific* fault (20.7%), so it was chosen for root cause analysis.
-- Fishbone and 5 Why results for Bumps: **[ADD LATER]**
-- X-bar/R results: [N] out-of-control subgroups on [measurement]. **[ADD LATER]**
+- Top 3 categories account for 75.5% of faults.
+- Other_Faults is a catch-all, so Bumps is the largest specific fault.
+- Bump rate is 35.9% on A300 steel vs 10.6% on A400, about 3.4 times higher.
+- Bumps cover a much smaller area than other faults on average, so they are small surface defects.
+- SPC: X-bar limits 60.9 to 138.6, R limits 0 to 142.4, [N] subgroups outside limits.
 
-## Pareto Chart
-![Pareto chart](images/pareto_chart.png)
-
-## Fishbone Diagram **[ADD LATER]**
+## Charts
+![Pareto](images/pareto_chart.png)
 ![Fishbone](images/fishbone_bumps.png)
+![X-bar](images/xbar_chart.png)
+![R chart](images/r_chart.png)
 
 ## Limitations
-- Causes on the fishbone are hypotheses from process knowledge, not proven causes, unless backed by the data comparison noted in the analysis.
-- The data is a static snapshot, so the control charts treat consecutive records as a time sequence for demonstration, not as a live production process.
+- The A300 link is an association, not proof of cause. Other fishbone causes are hypotheses.
+- The records are not a live time series. Thickness is set by each plate order, so the control-chart signals mostly reflect changes between product orders. A real study would chart deviation from target within one product type.
 - Other_Faults limits how specific the conclusions can be.
 
 ## Files
-- `Defect_Analysis.xlsx`: data, Pareto table, charts and summary
-- `images/`: exported chart images
+- `Defect_Analysis.xlsx`: data, Pareto, Bumps check, 5 Why, SPC and summary sheets
+- `images/`: chart images
+
+## Data source
+UCI Machine Learning Repository, Steel Plates Faults dataset.
 
 ## Author
-Alisha Mariyam Hussain | B.Tech ECE, BIT Mesra
-[LinkedIn link] | alishamariyamh@gmail.com
+Alisha Mariyam Hussain, B.Tech ECE, BIT Mesra | alishamariyamh@gmail.com

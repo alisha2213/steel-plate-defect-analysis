@@ -36,10 +36,10 @@ Excel (formulas such as SUM, VLOOKUP, AVERAGEIFS, COUNTIFS, SUMIFS; combo and li
 - SPC: X-bar limits 60.9 to 138.6, R limits 0 to 142.4, [N] subgroups outside limits.
 
 ## Charts
-![Pareto](images/pareto_chart.png)
-![Fishbone](images/fishbone_bumps.png)
-![X-bar](images/xbar_chart.png)
-![R chart](images/r_chart.png)
+![Pareto](pareto_chart.png)
+![Fishbone](fishbone_bumps.png)
+![X-bar](xbar_chart.png)
+![R chart](r_chart.png)
 
 ## Limitations
 - The A300 link is an association, not proof of cause. Other fishbone causes are hypotheses.
